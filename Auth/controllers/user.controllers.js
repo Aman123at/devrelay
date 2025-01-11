@@ -4,6 +4,8 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { generateAccessToken, hashPassword, isPasswordCorrect } from "../utils/helper.js";
+import dotenv from "dotenv";
+dotenv.config()
 
 const registerUser = asyncHandler(async (req, res, next) => {
   const { email, username, password, city="", country="", state="", fullname=""} = req.body;

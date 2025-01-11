@@ -1,5 +1,7 @@
 import grpc from '@grpc/grpc-js';
 import protoLoader from '@grpc/proto-loader';
+import dotenv from "dotenv";
+dotenv.config()
 
 const authPackageDefinition = protoLoader.loadSync("proto/auth.proto",{
     keepCase: true,

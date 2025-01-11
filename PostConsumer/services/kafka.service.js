@@ -1,5 +1,7 @@
 import { Kafka } from "kafkajs";
 import { bulkInsertPosts } from "../utils/helper.js";
+import dotenv from "dotenv";
+dotenv.config()
 
 const topic = process.env.KAFKA_TOPIC;
 

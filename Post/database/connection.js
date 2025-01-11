@@ -1,6 +1,8 @@
 import pg from "pg";
 import { initPostsTable } from "../utils/helper.js";
 import { DB_TYPE } from "../constants/constants.js";
+import dotenv from "dotenv";
+dotenv.config()
 const {Pool} = pg;
 
 export const pgPoolMaster = new Pool({

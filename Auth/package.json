@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --env-file=.env index.js",
-    "grpc": "nodemon --env-file=.env grpc.js"
+    "start:dev": "nodemon index.js",
+    "grpc:dev": "nodemon grpc.js",
+    "start": "node index.js",
+    "grpc": "node grpc.js"
   },
   "keywords": [
     "socialmedia"
@@ -19,10 +21,12 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.1.7",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "pm2": "^5.4.3"
   }
 }

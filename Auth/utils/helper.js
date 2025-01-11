@@ -1,5 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config()
+
 export const initUsersTable = async (pgClient) =>{
     const query = `CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,

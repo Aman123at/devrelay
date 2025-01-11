@@ -6,6 +6,8 @@ import { checkDatabaseConnection, pgPoolMaster, pgPoolReplica } from "./database
 import { CloudinaryService } from "./services/cloudinary.service.js";
 import postRouter from "./routes/post.route.js";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+dotenv.config()
 
 const app = express();
 const PORT = process.env.POST_PORT;

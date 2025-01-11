@@ -20,4 +20,4 @@ COPY . .
 # EXPOSE 4001
 
 # Define the command to run your app. Now it runs the JavaScript files
-CMD ["npm","--env-file=.env", "start"]
+CMD ["npm","start"]

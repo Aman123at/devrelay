@@ -3,6 +3,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { pgPool, checkDatabaseConnection } from "./database/connection.js";
 import userRouter from "./routes/user.routes.js";
+import dotenv from "dotenv";
+dotenv.config()
+
 const app = express();
 const PORT = process.env.AUTH_PORT;
 const origin = process.env.CORS_ORIGIN;

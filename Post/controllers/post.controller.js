@@ -4,6 +4,8 @@ import { CloudinaryService } from "../services/cloudinary.service.js";
 import KafkaService from "../services/kafka.service.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiRespones.js";
+import dotenv from "dotenv";
+dotenv.config()
 
 const kafkaService = new KafkaService();
 const cloudinaryService = new CloudinaryService();

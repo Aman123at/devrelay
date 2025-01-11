@@ -1,5 +1,8 @@
 import pg from "pg";
 import { initUsersTable } from "../utils/helper.js";
+import dotenv from "dotenv";
+dotenv.config()
+
 const {Pool} = pg;
 
 export const pgPool = new Pool({

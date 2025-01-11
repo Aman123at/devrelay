@@ -1,5 +1,8 @@
 import {v2 as cloudinaryV2} from 'cloudinary';
 import { v4 as uuidv4 } from 'uuid';
+import dotenv from "dotenv";
+dotenv.config()
+
 export class CloudinaryService {
     initConfig(){
         cloudinaryV2.config({

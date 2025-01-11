@@ -2,6 +2,8 @@ import grpc from '@grpc/grpc-js';
 import protoLoader from '@grpc/proto-loader';
 import { grpcAuthCheck } from './middlewares/auth.middlewares.js';
 import { sendGRPCResponse } from './utils/helper.js';
+import dotenv from "dotenv";
+dotenv.config()
 
 const authPackageDefinition = protoLoader.loadSync("proto/auth.proto",{});
 

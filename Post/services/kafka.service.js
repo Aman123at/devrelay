@@ -1,4 +1,6 @@
 import { Kafka } from "kafkajs";
+import dotenv from "dotenv";
+dotenv.config()
 
 export default class KafkaService {
     constructor () {

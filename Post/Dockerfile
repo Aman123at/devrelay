@@ -15,9 +15,7 @@ COPY . .
 
 # Expose the port your app listens on
 # 8001 is the port for the http server
-EXPOSE 8002  
-# 4001 is the port for the grpc server
-# EXPOSE 4001
+EXPOSE 8002
 
 # Define the command to run your app. Now it runs the JavaScript files
-CMD ["npm","--env-file=.env", "start"]
+CMD [ "npm", "start" ]
