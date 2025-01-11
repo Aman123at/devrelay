@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package = "./proto";
+package auth;
+
+service AuthService {
+    rpc IsUserAuthenticated(UserRequest) returns (AuthReply);
+}
+
+message UserRequest {
+    string token = 1;
+}
+
+
+message AuthReply {
+    bool authenticated = 1;
+    int64 userId = 2;
+    string role = 3;
+    string avatar_url = 4;
+    string username = 5;
+    string email = 6;
+    string fullname = 7;
+    string country = 8;
+    string city = 9;
+    string state = 10;
+}

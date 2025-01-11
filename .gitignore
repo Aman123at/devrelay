@@ -1,0 +1,7 @@
+data-persist
+data-persist/
+node_modules
+node_modules/
+*node_modules
+*node_modules*
+*.env
