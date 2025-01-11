@@ -123,6 +123,8 @@ services:
       context: ./Auth
     ports:
       - "8001:8001"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     # depends_on: 
     #   - users-db
     profiles: [auth]
@@ -133,16 +135,20 @@ services:
       context: ./Post
     ports:
       - "8002:8002"
-    depends_on: 
-      - post-db-master
+    # depends_on: 
+    #   - post-db-master
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     profiles: [post]
 
   post-consumer:
     container_name: post-consumer
     build:
       context: ./PostConsumer
-    depends_on: 
-      - post-db-master
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # depends_on: 
+    #   - post-db-master
     profiles: [post]
 
   affinity-service:
@@ -151,8 +157,10 @@ services:
       context: ./UserAffinity
     ports:
       - "8003:8003"
-    depends_on: 
-      - users-db
+    # depends_on: 
+    #   - users-db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     profiles: [affinity]
 
   comments-service:
@@ -161,15 +169,19 @@ services:
       context: ./Comments
     ports:
       - "8004:8004"
-    depends_on: 
-      - comments-db
+    # depends_on: 
+    #   - comments-db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     profiles: [comments]
 
   comments-consumer:
     container_name: comments-consumer
     build:
       context: ./CommentsConsumer
-    depends_on: 
-      - comments-db
+    # depends_on: 
+    #   - comments-db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     profiles: [comments]
     
