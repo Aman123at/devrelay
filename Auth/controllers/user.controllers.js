@@ -47,7 +47,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     httpOnly: true,
     // secure: process.env.NODE_ENV === "prod",
     // secure: false,
-    // sameSite: process.env.NODE_ENV === "prod" ? "None" : "",
+    sameSite: process.env.NODE_ENV === "prod" ? "None" : "",
   };
 
   return res
@@ -103,7 +103,7 @@ const loginUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     // secure: process.env.NODE_ENV === "prod",
     // secure: false,
-    // sameSite: process.env.NODE_ENV === "prod" ? "None" : "",
+    sameSite: process.env.NODE_ENV === "prod" ? "None" : "",
   };
 
   return res
