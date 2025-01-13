@@ -17,7 +17,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go application
-RUN CGO_ENABLED=0 GOOS=linux go build -o /app/comments-consumer ./main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/comments-consumer main.go
 
 # Stage 2: Create a minimal runtime image
 FROM alpine:latest
@@ -33,6 +33,8 @@ COPY --from=builder /app/comments-consumer /app/comments-consumer
 
 # Expose the port your app runs on
 # EXPOSE 8004
+# Copy the .env file
+COPY .env .env
 
 # Run the application
 CMD ["/app/comments-consumer"]

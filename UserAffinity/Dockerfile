@@ -17,7 +17,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go application
-RUN CGO_ENABLED=0 GOOS=linux go build -o /app/comments ./main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/affinity main.go
 
 # Stage 2: Create a minimal runtime image
 FROM alpine:latest
@@ -29,10 +29,13 @@ FROM alpine:latest
 WORKDIR /app
 
 # Copy the binary from the builder stage
-COPY --from=builder /app/comments /app/comments
+COPY --from=builder /app/affinity /app/affinity
+
+# Copy the .env file
+COPY .env .env
 
 # Expose the port your app runs on
-EXPOSE 8004
+EXPOSE 8003
 
 # Run the application
-CMD ["/app/comments"]
+CMD ["/app/affinity"]

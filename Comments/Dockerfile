@@ -1,7 +1,7 @@
 # Stage 1: Build the Go application
 FROM golang:1.23.4-alpine AS builder
 
-# # Install system dependencies (if needed)
+# Install system dependencies (if needed)
 # RUN apk add --no-cache git gcc musl-dev
 
 # Set the working directory inside the container
@@ -30,6 +30,9 @@ WORKDIR /app
 
 # Copy the binary from the builder stage
 COPY --from=builder /app/comments /app/comments
+
+# Copy the .env file
+COPY .env .env
 
 # Expose the port your app runs on
 EXPOSE 8004

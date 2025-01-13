@@ -11,8 +11,9 @@ services:
     image: postgres
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - path: ./compose.env
+        required: true
     volumes:
       - ./data-persist/users-data:/var/lib/postgresql/data
     profiles: [db-user]
@@ -22,8 +23,9 @@ services:
     image: postgres
     ports:
       - "5433:5432"
-    environment:
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - path: ./compose.env
+        required: true
     volumes:
       - ./data-persist/post-db-master:/var/lib/postgresql/data
     profiles: [db-post]
@@ -36,8 +38,9 @@ services:
     image: postgres
     ports:
       - "5434:5432"
-    environment:
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - path: ./compose.env
+        required: true
     volumes:
       - ./data-persist/post-db-replica:/var/lib/postgresql/data
     profiles: [db-post]
@@ -52,8 +55,9 @@ services:
     image: postgres
     ports:
       - "5435:5432"
-    environment:
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - path: ./compose.env
+        required: true
     volumes:
       - ./data-persist/comments-db:/var/lib/postgresql/data
     profiles: [db-comments]
@@ -81,11 +85,9 @@ services:
     container_name: kafka
     ports:
       - "9092:9092"
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    env_file:
+      - path: ./compose.env
+        required: true
     depends_on:
       - zookeeper
     profiles: [kafka]
@@ -111,9 +113,9 @@ services:
       - "5050:80"  # This port mapping allows the Nginx container to listen on port 8080 on the host machine
     extra_hosts:
       - "host.docker.internal:host-gateway"  # This extra host is used to allow the Nginx container to access the host machine
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=password
+    env_file:
+      - path: ./compose.env
+        required: true
     profiles: [pgadmin]
 
 
@@ -125,8 +127,6 @@ services:
       - "8001:8001"
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    # depends_on: 
-    #   - users-db
     profiles: [auth]
 
   post-service:
@@ -135,8 +135,6 @@ services:
       context: ./Post
     ports:
       - "8002:8002"
-    # depends_on: 
-    #   - post-db-master
     extra_hosts:
       - "host.docker.internal:host-gateway"
     profiles: [post]
@@ -147,8 +145,6 @@ services:
       context: ./PostConsumer
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    # depends_on: 
-    #   - post-db-master
     profiles: [post]
 
   affinity-service:
@@ -157,8 +153,6 @@ services:
       context: ./UserAffinity
     ports:
       - "8003:8003"
-    # depends_on: 
-    #   - users-db
     extra_hosts:
       - "host.docker.internal:host-gateway"
     profiles: [affinity]
@@ -169,8 +163,6 @@ services:
       context: ./Comments
     ports:
       - "8004:8004"
-    # depends_on: 
-    #   - comments-db
     extra_hosts:
       - "host.docker.internal:host-gateway"
     profiles: [comments]
@@ -179,8 +171,6 @@ services:
     container_name: comments-consumer
     build:
       context: ./CommentsConsumer
-    # depends_on: 
-    #   - comments-db
     extra_hosts:
       - "host.docker.internal:host-gateway"
     profiles: [comments]
