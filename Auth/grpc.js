@@ -11,7 +11,7 @@ const authProto = grpc.loadPackageDefinition(authPackageDefinition).auth;
 
 const server = new grpc.Server();
 
-const address = `0.0.0.0:${process.env.GRPC_AUTH_PORT}`;
+const address = `192.168.1.1:${process.env.GRPC_AUTH_PORT}`;
 
 server.addService(authProto.AuthService.service, {
     IsUserAuthenticated: async(call, callback) => {
