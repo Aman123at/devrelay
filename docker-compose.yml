@@ -125,6 +125,7 @@ services:
       context: ./Auth
     ports:
       - "8001:8001"
+      - "4001:4001"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     profiles: [auth]
