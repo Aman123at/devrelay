@@ -16,6 +16,9 @@ RUN npm install pm2 -g
 # Copy the source code
 COPY . .
 
+# Copy the start-servers.sh script
+COPY start-servers.sh /app/start-servers.sh
+
 # Expose the port your app listens on
 # 8001 is the port for the http server
 EXPOSE 8001  
@@ -23,4 +26,4 @@ EXPOSE 8001
 EXPOSE 4001
 
 # Define the command to run your app using pm2
-CMD ["pm2", "start", "index.js", "&&","pm2", "start", "grpc.js"]
+CMD ["./start-servers.sh"]
