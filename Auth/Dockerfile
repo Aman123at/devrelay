@@ -19,6 +19,5 @@ EXPOSE 8001
 # 4001 is the port for the grpc server
 EXPOSE 4001
 
-# Define the command to run your app. Now it runs the JavaScript files
-RUN npm run grpc &
-CMD ["npm" , "start"]
+# Define the command to run your app
+CMD ["chmod +x start-servers.sh && ./start-servers.sh"]
