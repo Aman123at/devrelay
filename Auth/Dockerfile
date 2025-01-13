@@ -20,4 +20,4 @@ EXPOSE 8001
 EXPOSE 4001
 
 # Define the command to run your app
-CMD ["chmod +x start-servers.sh && ./start-servers.sh"]
+CMD ["./start-servers.sh"]
