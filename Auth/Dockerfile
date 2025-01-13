@@ -10,6 +10,9 @@ COPY package*.json .
 # Install app dependencies
 RUN npm ci --omit=dev
 
+# Install pm2 globally
+RUN npm install pm2 -g
+
 # Copy the source code
 COPY . .
 
@@ -19,5 +22,5 @@ EXPOSE 8001
 # 4001 is the port for the grpc server
 EXPOSE 4001
 
-# Define the command to run your app
-CMD ["./start-servers.sh"]
+# Define the command to run your app using pm2
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]
