@@ -26,4 +26,4 @@ EXPOSE 8001
 EXPOSE 4001
 
 # Define the command to run your app using pm2
-CMD ["./start-servers.sh"]
+CMD ["sh","start-servers.sh"]
